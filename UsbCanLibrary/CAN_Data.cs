@@ -47,7 +47,19 @@ namespace CAN
                     throw new Exception("数据帧CAN数据不能为空");
                 }
             }
-            _id = id;
+
+            if (externFrame)    //扩展帧ID应是0-1FFFFFFF之间
+            {
+                if (id > 0x1FFFFFFF)
+                    throw new Exception("扩展帧ID不以大于0x1FFFFFFF");
+                _id = id;
+            }
+            else    //标准帧ID应0-7FF之间
+            {
+                if (id > 0x7FF)
+                    throw new Exception("扩展帧ID不以大于0x7FF");
+                _id = id;
+            }
             _sendType = sendType;
             _remoteFlag = remoteFrame;
             _externFlag = externFrame;

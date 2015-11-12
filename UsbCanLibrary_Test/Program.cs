@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace UsbCanLibrary测试
+namespace ACUSB_132B_Tool
 {
     static class Program
     {
@@ -14,7 +14,7 @@ namespace UsbCanLibrary测试
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(/*new MainForm()*/new Form1());
         }
     }
 }

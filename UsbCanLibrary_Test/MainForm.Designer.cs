@@ -1,4 +1,4 @@
-﻿namespace UsbCanLibrary测试
+﻿namespace ACUSB_132B_Tool
 {
     partial class MainForm
     {

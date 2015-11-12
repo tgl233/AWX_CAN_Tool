@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using CAN;
 using CsmProtocl;
 
-namespace UsbCanLibrary测试
+namespace ACUSB_132B_Tool
 {
     public partial class MainForm : Form
     {
