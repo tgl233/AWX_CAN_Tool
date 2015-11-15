@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsbCanLibrary", "UsbCanLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsbCanLibrary_Test", "UsbCanLibrary_Test\UsbCanLibrary_Test.csproj", "{3AE34B7E-90CE-4807-AAD2-CB1BC02280D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsmPackageLibrary.cs", "CsmPackageLibrary.cs\CsmPackageLibrary.cs.csproj", "{3EA989FE-7D82-4F48-905E-7025B08798F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsmPackageLibrary", "CsmPackageLibrary\CsmPackageLibrary.csproj", "{3EA989FE-7D82-4F48-905E-7025B08798F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

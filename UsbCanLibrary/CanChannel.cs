@@ -479,5 +479,22 @@ namespace CAN
             }
         }
 
+        public event EventHandler CsmButton;
+
+        public void SetData(byte[] data)
+        {
+            textBox2.Text = BitConverter.ToString(data).Replace('-', ' ');
+        }
+
+        public void SetId(int id)
+        {
+            textBox1.Text = id.ToString("X8");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (CsmButton != null)
+                CsmButton(sender, e);
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace ACUSB_132B_Tool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(/*new MainForm()*/new Form1());
+            Application.Run(new MainForm()/*new Form1()*/);
         }
     }
 }

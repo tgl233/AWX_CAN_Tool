@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using CAN;
-using CsmProtocl;
+using CsmProtocol;
 
 namespace ACUSB_132B_Tool
 {
@@ -24,6 +24,17 @@ namespace ACUSB_132B_Tool
             button_information.Enabled = false;
             button_closedevice.Enabled = false;
             tabControl1.Enabled = false;
+            canChannel1.CsmButton += new EventHandler(canChannel1_CsmButton);
+        }
+
+        void canChannel1_CsmButton(object sender, EventArgs e)
+        {
+            CsmPackageForm f = new CsmPackageForm();
+            if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                canChannel1.SetId(((CsmCan)f.GetValue()).Id);
+                canChannel1.SetData(((CsmCan)f.GetValue()).Data);
+            }
         }
 
         private void button_opendevice_Click(object sender, EventArgs e)
@@ -85,6 +96,23 @@ namespace ACUSB_132B_Tool
 
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //CsmProtocol.CsmData result = null;
+            //Form1 f = new Form1();
+            //DialogResult res = f.ShowDialog();
+            //if (res == System.Windows.Forms.DialogResult.OK)
+            //{
+            //   result = f.GetValue();
+            //}
+
+            //if (result != null)
+            //    MessageBox.Show(string.Format("ID: 0x{0:X3}\n Data: {1}", ((CsmProtocol.CsmCan)result).Id,
+            //        BitConverter.ToString(((CsmProtocol.CsmCan)result).Data)));
+
+            
         }
     }
 }

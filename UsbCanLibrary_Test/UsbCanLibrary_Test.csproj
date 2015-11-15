@@ -52,11 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="CsmPackage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CsmPackage.designer.cs">
+      <DependentUpon>CsmPackage.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -66,8 +66,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="CsmPackage.resx">
+      <DependentUpon>CsmPackage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -94,6 +94,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CsmPackageLibrary\CsmPackageLibrary.csproj">
+      <Project>{3EA989FE-7D82-4F48-905E-7025B08798F0}</Project>
+      <Name>CsmPackageLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UsbCanLibrary\UsbCanLibrary.csproj">
       <Project>{C2A504FD-BF2F-44E2-A301-62FF03F4ED37}</Project>
       <Name>UsbCanLibrary</Name>

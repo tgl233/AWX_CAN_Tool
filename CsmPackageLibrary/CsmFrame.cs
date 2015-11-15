@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CsmProtocl
+namespace CsmProtocol
 {
     /// <summary>
     /// 命令包数据

@@ -33,12 +33,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="CsmParser.cd" />
     <None Include="CsmFrame.cs" />
-    <Compile Include="CsmPackages.cs" />
+    <None Include="CsmPackages.cs" />
     <None Include="CsmProtocol.cs" />
+    <Compile Include="CsmParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +53,9 @@
       <Project>{C2A504FD-BF2F-44E2-A301-62FF03F4ED37}</Project>
       <Name>UsbCanLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="备注.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
