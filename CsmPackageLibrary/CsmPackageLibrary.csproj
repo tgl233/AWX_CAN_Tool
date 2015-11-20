@@ -8,8 +8,8 @@
     <ProjectGuid>{3EA989FE-7D82-4F48-905E-7025B08798F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CsmPackageLibrary.cs</RootNamespace>
-    <AssemblyName>CsmPackageLibrary.cs</AssemblyName>
+    <RootNamespace>CsmProtocol</RootNamespace>
+    <AssemblyName>CsmPackageLibrary</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,10 +38,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="CsmParser.cd" />
     <None Include="CsmFrame.cs" />
     <None Include="CsmPackages.cs" />
     <None Include="CsmProtocol.cs" />
+    <Compile Include="CsmCanMachine.cs" />
     <Compile Include="CsmParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

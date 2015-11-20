@@ -32,8 +32,10 @@ namespace ACUSB_132B_Tool
             CsmPackageForm f = new CsmPackageForm();
             if (f.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                canChannel1.SetId(((CsmCan)f.GetValue()).Id);
-                canChannel1.SetData(((CsmCan)f.GetValue()).Data);
+                //canChannel1.SetId(((CsmCan)f.GetValue()).Id);
+                //canChannel1.SetData(((CsmCan)f.GetValue()).Data);
+                canChannel1.SetId(f.GetValue().GetId());
+                canChannel1.SetData(f.GetValue().GetData());
             }
         }
 

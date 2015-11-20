@@ -1,75 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using CAN;
+//using CAN;
 
 namespace CsmProtocol
 {
+    #region 暂不用
     /// <summary>
     /// 方便Can接口发送的的Csm数据包类
     /// </summary>
-    public class CsmCan
-    {
-        int _id;
-        byte[] _data;
+    //public class CsmCan
+    //{
+    //    int _id;
+    //    byte[] _data;
 
-        public int Id { get { return this._id; } }
-        public byte[] Data { get { return this._data; } }
+    //    public int Id { get { return this._id; } }
+    //    public byte[] Data { get { return this._data; } }
 
-        public CsmCan(int id, byte[] data)
-        {
-            this._id = id;
-            this._data = data;
-        }
+    //    public CsmCan(int id, byte[] data)
+    //    {
+    //        this._id = id;
+    //        this._data = data;
+    //    }
 
-        /// <summary>
-        /// 显示的将CsmCan数据类型转换为CsmData数据类型
-        /// </summary>
-        /// <param name="csmCan">需要转换的数据类型</param>
-        /// <returns>转换结果的数据类型</returns>
-        public static explicit operator CsmData(CsmCan csmCan)
-        {
-            int type = csmCan.Id & ~0xF8;
-            int address = (csmCan.Id & 0xF8) >> 3;
-            int? index = null;
-            int? count = null;
-            byte[] data = new byte[8];
+    //    /// <summary>
+    //    /// 显示的将CsmCan数据类型转换为CsmData数据类型
+    //    /// </summary>
+    //    /// <param name="csmCan">需要转换的数据类型</param>
+    //    /// <returns>转换结果的数据类型</returns>
+    //    public static explicit operator CsmData(CsmCan csmCan)
+    //    {
+    //        int type = csmCan.Id & ~0xF8;
+    //        int address = (csmCan.Id & 0xF8) >> 3;
+    //        int? index = null;
+    //        int? count = null;
+    //        byte[] data = new byte[8];
 
-            if (Enum.IsDefined(typeof(CsmPackageType), type))
-            {
-                switch ((CsmPackageType)(type & ~0x100))
-                {
-                    case (CsmPackageType.MoreAnswerHigh):
-                        {
-                            index = Convert.ToInt32(csmCan.Data[0]);
-                            data = new byte[csmCan.Data.Length - 1];
-                            Array.Copy(csmCan.Data, 1, data, 0, data.Length);
-                            break;
-                        }
-                    case (CsmPackageType.EndMoreAnswerHigh):
-                        {
-                            index = Convert.ToInt32(csmCan.Data[0]);
-                            count = Convert.ToInt32(csmCan.Data[2]) << 8 + Convert.ToInt32(csmCan.Data[1]);
-                            data = new byte[csmCan.Data.Length - 3];
-                            Array.Copy(csmCan.Data, 3, data, 0, data.Length);
-                            break;
-                        }
-                    default:
-                        {
-                            data = csmCan.Data;
-                            break;
-                        }
-                }
-               return new CsmData(address, data, (CsmPackageType)type, index, count);
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show(string.Format("一个非法的Csm数据包：\nId:{0}\nData:{1}",
-                    csmCan.Id, BitConverter.ToString(csmCan.Data)), "错误：");
-                return null;
-            }
-        }
-    }
+    //        if (Enum.IsDefined(typeof(CsmPackageType), type))
+    //        {
+    //            switch ((CsmPackageType)(type & ~0x100))
+    //            {
+    //                case (CsmPackageType.MoreAnswerHigh):
+    //                    {
+    //                        index = Convert.ToInt32(csmCan.Data[0]);
+    //                        data = new byte[csmCan.Data.Length - 1];
+    //                        Array.Copy(csmCan.Data, 1, data, 0, data.Length);
+    //                        break;
+    //                    }
+    //                case (CsmPackageType.EndMoreAnswerHigh):
+    //                    {
+    //                        index = Convert.ToInt32(csmCan.Data[0]);
+    //                        count = Convert.ToInt32(csmCan.Data[2]) << 8 + Convert.ToInt32(csmCan.Data[1]);
+    //                        data = new byte[csmCan.Data.Length - 3];
+    //                        Array.Copy(csmCan.Data, 3, data, 0, data.Length);
+    //                        break;
+    //                    }
+    //                default:
+    //                    {
+    //                        data = csmCan.Data;
+    //                        break;
+    //                    }
+    //            }
+    //            return new CsmData(address, data, (CsmPackageType)type, index, count);
+    //        }
+    //        else
+    //        {
+    //            System.Windows.Forms.MessageBox.Show(string.Format("一个非法的Csm数据包：\nId:{0}\nData:{1}",
+    //                csmCan.Id, BitConverter.ToString(csmCan.Data)), "错误：");
+    //            return null;
+    //        }
+    //    }
+    //}
+    #endregion
 
     /// <summary>
     /// 由Can数据帧解析出来的初始Csm包类
@@ -95,7 +97,7 @@ namespace CsmProtocol
         /// <summary>
         /// 构造函数
         /// </summary>
-        public CsmData(int address, byte[] data, CsmPackageType type, int? index =null, int? count =null)
+        public CsmData(int address, byte[] data, CsmPackageType type, int? index = null, int? count = null)
         {
             this._type = type;
             this._address = address;
@@ -123,43 +125,43 @@ namespace CsmProtocol
         /// <summary>
         /// 由CAN的ID和Data的构造函数
         /// </summary>
-        //public CsmData(uint id, byte[] data)
-        //{
+        public CsmData(uint id, byte[] data)
+        {
 
-        //    int temp = (int)(id & ~0xF8);
-        //    if (Enum.IsDefined(typeof(CsmPackageType), temp))   //判断id是不是Csm定义的数据包
-        //    {
-        //        this._address = (int)(id & 0xF8);
-        //        switch ((int)this._type & ~0x100)
-        //        {
-        //            case ((int)CsmPackageType.MoreAnswerHigh):
-        //                {
-        //                    this._index = data[0];
-        //                    Array.Copy(data, 1, this._data, 0, data.Length - 1);
-        //                    break;
-        //                }
-        //            case ((int)CsmPackageType.EndMoreAnswerHigh):
-        //                {
-        //                    this._index = data[0];
-        //                    this._count = data[1];
-        //                    Array.Copy(data, 2, this._data, 0, data.Length - 2);
-        //                    break;
-        //                }
-        //            default:
-        //                {
-        //                    this._index = null;
-        //                    this._count = null;
-        //                    this._type = (CsmPackageType)temp;
-        //                    this._data = data;
-        //                    break;
-        //                }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        throw new Exception("这不一个Csm数据包");
-        //    }
-        //}
+            int temp = (int)(id & ~0xF8);
+            if (Enum.IsDefined(typeof(CsmPackageType), temp))   //判断id是不是Csm定义的数据包
+            {
+                this._address = (int)(id & 0xF8);
+                switch ((int)this._type & ~0x100)
+                {
+                    case ((int)CsmPackageType.MoreAnswerHigh):
+                        {
+                            this._index = data[0];
+                            Array.Copy(data, 1, this._data, 0, data.Length - 1);
+                            break;
+                        }
+                    case ((int)CsmPackageType.EndMoreAnswerHigh):
+                        {
+                            this._index = data[0];
+                            this._count = data[1];
+                            Array.Copy(data, 2, this._data, 0, data.Length - 2);
+                            break;
+                        }
+                    default:
+                        {
+                            this._index = null;
+                            this._count = null;
+                            this._type = (CsmPackageType)temp;
+                            this._data = data;
+                            break;
+                        }
+                }
+            }
+            else
+            {
+                throw new Exception("这不一个Csm数据包");
+            }
+        }
 
         /// <summary>
         /// 数据包类型
@@ -216,6 +218,7 @@ namespace CsmProtocol
             }
         }
 
+        #region 暂不用
         /// <summary>
         /// 显示的转换将DataFrame类型转换为CsmData类型
         /// </summary>
@@ -225,37 +228,89 @@ namespace CsmProtocol
         //{
         //    return new CsmData(dataFrame.ID, dataFrame.Date);
         //}
+        /// <summary>
+        /// 显示的将CsmData数据类型转为CsmCan类型
+        /// </summary>
+        /// <param name="data">待转换的CsmData数据类型</param>
+        /// <returns>显示转换后的CsmCan数据类型</returns>
+        //public static explicit operator CsmCan(CsmData data)
+        //{
+        //    byte[] dat;
+        //    switch ((CsmPackageType)((int)data.Type&~0x100))
+        //    {
+        //        case CsmPackageType.MoreAnswerHigh:
+        //            {
+        //                dat = new byte[data.Data.Length + 1];
+        //                dat[0] = Convert.ToByte(data.Index);
+        //                Array.Copy(data.Data, 0, dat, 1, data.Data.Length);
+        //                break;
+        //            }
+        //        case CsmPackageType.EndMoreAnswerHigh:
+        //            {
+        //                dat = new byte[data.Data.Length + 3];
+        //                dat[0] = Convert.ToByte(data.Index);
+        //                dat[1] = Convert.ToByte(data.Count & 0xFF);
+        //                dat[2] = Convert.ToByte(data.Count >> 8);
+        //                Array.Copy(data.Data, 0, dat, 3, data.Data.Length);
+        //                break;
+        //            }
+        //        default:
+        //            {
+        //                dat = data.Data;
+        //                break;
+        //            }
+        //    }
 
-        public static explicit operator CsmCan(CsmData data)
+        //    return new CsmCan((int)data.Type | (data.Address<<3), dat);
+        //}
+        #endregion
+
+        /// <summary>
+        /// 获取CsmData对应的CanDataFrame的ID
+        /// </summary>
+        /// <returns></returns>
+        public int GetId()
+        {
+            return (int)this.Type | Address << 3;
+        }
+
+        /// <summary>
+        /// 获取CsmData对应的CanDataFrame的Data
+        /// </summary>
+        /// <returns></returns>
+        public byte[] GetData()
         {
             byte[] dat;
-            switch ((CsmPackageType)((int)data.Type&~0x100))
+
+            switch ((int)this.Type & ~0x100)
             {
-                case CsmPackageType.MoreAnswerHigh:
+                case (int)CsmPackageType.MoreAnswerHigh:
                     {
-                        dat = new byte[data.Data.Length + 1];
-                        dat[0] = Convert.ToByte(data.Index);
-                        Array.Copy(data.Data, 0, dat, 1, data.Data.Length);
+                        dat = new byte[this.Data.Length + 1];
+                        dat[0] = Convert.ToByte(this.Index);
+                        Array.Copy(this.Data, 0, dat, 1, this.Data.Length);
                         break;
                     }
-                case CsmPackageType.EndMoreAnswerHigh:
+                case (int)CsmPackageType.EndMoreAnswerHigh:
                     {
-                        dat = new byte[data.Data.Length + 3];
-                        dat[0] = Convert.ToByte(data.Index);
-                        dat[1] = Convert.ToByte(data.Count & 0xFF);
-                        dat[2] = Convert.ToByte(data.Count >> 8);
-                        Array.Copy(data.Data, 0, dat, 3, data.Data.Length);
+                        dat = new byte[this.Data.Length + 3];
+                        dat[0] = Convert.ToByte(this.Index);
+                        dat[1] = Convert.ToByte(this.Count & 0xFF);
+                        dat[2] = Convert.ToByte(this.Count >> 8);
+                        Array.Copy(this.Data, 0, dat, 3, this.Data.Length);
                         break;
                     }
                 default:
-                    {
-                        dat = data.Data;
-                        break;
-                    }
+                        {
+                            dat = this.Data;
+                            break;
+                        }
             }
 
-            return new CsmCan((int)data.Type | (data.Address<<3), dat);
+            return dat;
         }
+
+
     }
 
     /// <summary>
