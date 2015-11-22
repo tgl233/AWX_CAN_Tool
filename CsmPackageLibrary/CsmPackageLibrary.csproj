@@ -37,12 +37,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="CsmParser.cd" />
     <None Include="CsmFrame.cs" />
     <None Include="CsmPackages.cs" />
     <None Include="CsmProtocol.cs" />
+    <Compile Include="CsmCanCommunication.cs" />
     <Compile Include="CsmCanMachine.cs" />
     <Compile Include="CsmParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

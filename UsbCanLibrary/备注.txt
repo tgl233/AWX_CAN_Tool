@@ -1,0 +1,4 @@
+当先打开软件后插入usbcan模块时，其它引用模块通道对象无法成常使用：
+	原因：当设备未插入时，这时ACUSB_132B对象的CAN0和CAN1为nll值，
+		  虽然在UsbCanDevice添加了EventOpen事件，又在ACUSB_132B构造函数中注册了消息事件，
+		  但是在调用ACUSB_132B对象的Open()函数之前，引用了ACUSB_132B对象的CAN0或CAN1仍然还是没法正常使用。

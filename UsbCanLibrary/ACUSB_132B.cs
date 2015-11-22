@@ -7,8 +7,8 @@ namespace CAN
 {
     public class ACUSB_132B : UsbCanDevice
     {
-        private UsbCan _can0;
-        private UsbCan _can1;
+        private UsbCan _can0 = null;
+        private UsbCan _can1 = null;
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -16,9 +16,21 @@ namespace CAN
         public ACUSB_132B(uint index)
             : base(DeviceType.ACUSB_132B, index)
         {
+            if (this.Handle != 0)
+            {
+                this._can0 = new UsbCan(this.Handle, 0);
+                this._can1 = new UsbCan(this.Handle, 1);
+            }
+            this.EventOpen += new EventHandler(ACUSB_132B_EventOpen);
+        }
+
+        void ACUSB_132B_EventOpen(object sender, EventArgs e)
+        {
             this._can0 = new UsbCan(this.Handle, 0);
             this._can1 = new UsbCan(this.Handle, 1);
         }
+
+       
 
         /// <summary>
         /// CAN通道对象

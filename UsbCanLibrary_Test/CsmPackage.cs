@@ -13,7 +13,7 @@ namespace ACUSB_132B_Tool
     {
         DataTable dt1 = new DataTable("csmType1");
         DataTable dt2 = new DataTable("csmType2");
-        CsmData _Data = null;
+        CsmDataFrame _Data = null;
         public CsmPackageForm()
         {
             InitializeComponent();
@@ -136,7 +136,7 @@ namespace ACUSB_132B_Tool
         {
         }
 
-        public CsmData GetValue()
+        public CsmDataFrame GetValue()
         {
             int typed;
             if (radioButton3.Checked)
@@ -144,7 +144,7 @@ namespace ACUSB_132B_Tool
             else
                 typed = (int)comboBox1.SelectedValue | 0x100;
 
-            CsmData res = new CsmData((int)numericUpDown1.Value, ConvertToData(textBox3.Text), (CsmPackageType)typed,
+            CsmDataFrame res = new CsmDataFrame((int)numericUpDown1.Value, ConvertToData(textBox3.Text), (CsmPackageType)typed,
                 (int)numericUpDown2.Value, (int)numericUpDown3.Value);
 
             return res;

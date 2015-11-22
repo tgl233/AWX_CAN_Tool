@@ -63,7 +63,6 @@ namespace CAN
         {
             get
             {
-                //throw new System.NotImplementedException();
                 return this._handle;
             }
         }
@@ -79,6 +78,7 @@ namespace CAN
                 return this._index;
             }
         }
+
         /// <summary>
         /// 打开USB设备
         /// </summary>
@@ -91,6 +91,8 @@ namespace CAN
             {
                 Debug.WriteLine(string.Format("打开\t USB{0}<->{1}\t成功\t设备句柄：{2}", this._index, (DeviceType)this._deviceType, resualt));
                 this._handle = resualt;
+                if (EventOpen != null)
+                    EventOpen(resualt,new EventArgs());
                 return true;
             }
             else
@@ -173,6 +175,8 @@ namespace CAN
             float f = float.Parse(str) / 100;
             return "V" + f.ToString("F");
         }
+
+        protected event EventHandler EventOpen;
 
         /// <summary>
         /// USBCAN设备的每个CAN通道类。
